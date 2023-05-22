@@ -1,0 +1,5 @@
+### 启动远程调试
+ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=20055,suspend=n -jar new_sherry_product-0.0.1-SNAPSHOT.jar
+
+TCP:2020,20221,20021,13142,20039,20079,20080,3690,20092,20036,80,20081,29200,20029,20055
+
