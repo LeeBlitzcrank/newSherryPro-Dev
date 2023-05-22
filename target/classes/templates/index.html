@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的读书笔记</title>
+    <script type="text/javascript" src="qrScript/jquery.min.js"></script>
+    <script type="text/javascript" src="qrScript/qrcode.js"></script>
+</head>
+
+<body>
+<div class="c_scroll c_scroll-float c_scroll-gray c_scroll-header" id="menu">
+    <div class="c_space"></div>
+
+    <div class="c_list">
+        <ul>
+            <!--二维码生成-->
+            <li class="required">
+                <div class="label">二维码生成</div>
+                <div class="value">
+                          <span class="e_mix">
+                           <input id="text" type="text" value="" placeholder="请输入"/>
+                         </span>
+                </div>
+            </li>
+
+            <!--二维码结果-->
+            <li class="required" style="display: none" id="svgPhoto">
+                <div class="label">二维码结果</div>
+                <div class="value">
+                          <span class="e_mix">
+                           <svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                               <g id="qrcode"/>
+                           </svg>
+                         </span>
+                </div>
+            </li>
+
+            <!--扫描二维码-->
+            <li class="required">
+                <div class="label">扫描二维码</div>
+                <div class="value">
+                     <span class="e_mix">
+                       <input type="text" placeholder="请输入"/>
+                       <button onclick="lineScanQRAdderss()">跳转</button>
+                     </span>
+                </div>
+            </li>
+
+            <!--swagger-->
+            <li class="required">
+                <div class="label">swagger</div>
+                <div class="value">
+                     <span class="e_mix">
+                       <input type="text" placeholder="请输入" style="display: none"/>
+                       <button onclick="lineSwaggerAdderss()">跳转</button>
+                     </span>
+                </div>
+            </li>
+
+            <!--VUE测试-->
+            <li class="required">
+                <div class="label">vue测试页面</div>
+                <div class="value">
+                     <span class="e_mix">
+                       <input type="text" placeholder="请输入" style="display: none"/>
+                       <button onclick="lineVueIndexPage()">跳转</button>
+                     </span>
+                </div>
+            </li>
+
+
+
+
+
+        </ul>
+    </div>
+</div>
+
+<iframe frameborder="0" scrolling="no" style="width: 100%;height:750px;"></iframe>
+<center style="padding: 0;margin:0;list-style: none">
+<!--    <br><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=湘ICP备20003618号">湘ICP备20003618号</a>-->
+    <br><a href="https://beian.miit.gov.cn/">湘ICP备20003618号</a>
+</center>
+
+</body>
+<script type="text/javascript">
+    /*二维码生成---开始*/
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width: 100,
+        height: 100,
+        useSVG: true
+    });
+
+    function makeCode() {
+        var elText = document.getElementById("text");
+
+        if (!elText.value) {
+            elText.focus();
+            return;
+        }
+        $('#svgPhoto').css('display', '');
+        qrcode.makeCode(elText.value);
+    }
+
+    // 测试触发
+    $("#text").on("blur", function () {
+        makeCode();
+    }).on("keydown", function (e) {
+        if (e.keyCode == 13) {
+            makeCode();
+        }
+    });
+    // 默认隐藏
+    // makeCode();
+    /*二维码生成---结束*/
+
+    /*sqagger---开始*/
+    // 跳转swagger
+    function lineSwaggerAdderss() {
+        window.location.href = '/swagger-ui.html'
+    }
+
+    /*sqagger---结束*/
+
+
+    /*扫描二维码---开始*/
+    // 跳转扫描二维码
+    function lineScanQRAdderss() {
+        window.location.href = '/toScanQR'
+    }
+
+    function lineVueIndexPage() {
+        window.location.href = '/vueIndexPage'
+    }
+
+    /*扫描二维码---结束*/
+
+</script>
+</html>
